@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rendering should render a <FabDropDownMenu /> 1`] = `
+<div
+  style={
+    Object {
+      "display": "inline-block",
+      "position": "relative",
+    }
+  }
+>
+  <MenuControl
+    duration={300}
+    onClick={[Function]}
+    open={false}
+  />
+</div>
+`;
