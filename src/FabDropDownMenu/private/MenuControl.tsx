@@ -12,19 +12,26 @@ const TRANSITION_STYLE = {
 };
 
 type PropsT = {
-  open: boolean;
-  duration: number;
+  open?: boolean;
+  duration?: number;
   onClick?: React.MouseEventHandler<void>;
+  backgroundColor?: string;
 };
 
 class MenuControl extends React.PureComponent<PropsT> {
+  static defaultProps: Partial<PropsT> = {
+    open: false,
+    duration: 300,
+    backgroundColor: 'rgb(0, 188, 212)'
+  };
+
   constructor() {
     super();
     this.handleClick = this.handleClick.bind(this);
   }
 
   render() {
-    const { open, duration } = this.props;
+    const { open, duration, backgroundColor } = this.props;
     const defaultStyle: React.CSSProperties = {
       transition: `transform ${duration}ms ease-in-out`,
       transform: `rotate(0deg)`
@@ -49,13 +56,13 @@ class MenuControl extends React.PureComponent<PropsT> {
           break;
       }
       return (
-        <FloatingActionButton onClick={this.handleClick}>
+        <FloatingActionButton onClick={this.handleClick} backgroundColor={backgroundColor}>
            {action} 
         </FloatingActionButton>
       );
     };
     return (
-      <Transition in={open} timeout={duration}>
+      <Transition in={open!} timeout={duration!}>
         {display}
       </Transition>
     );

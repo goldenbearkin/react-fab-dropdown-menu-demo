@@ -3,15 +3,17 @@ import MenuControl from './private/MenuControl';
 import MenuItem from './private/MenuItem';
 
 type PropsT = {
-  density?: number,
-  duration?: number
+  density?: number;
+  duration?: number;
+  backgroundColor?: string;
+  style?: React.CSSProperties;
 };
 
 type StateT = {
   isOpened: boolean;
 };
 
-class FabMenu extends React.PureComponent<PropsT, StateT> {
+class FabDropDownMenu extends React.PureComponent<PropsT, StateT> {
   static defaultProps: Partial<PropsT> = {
     density: 80,
     duration: 300
@@ -20,13 +22,13 @@ class FabMenu extends React.PureComponent<PropsT, StateT> {
   constructor() {
     super();
     this.state = { isOpened: false };
+
     this.handleClick = this.handleClick.bind(this);
   }
 
   render() {
-    const { duration, density, children } = this.props;
+    const { duration, density, backgroundColor, style, children } = this.props;
     const { isOpened } = this.state;
-
     const numOfChild = React.Children.count(children);
     const display = React.Children.map(children, (child, index) => {
       const subDuration = isOpened ? numOfChild - index : index + 1;
@@ -42,9 +44,16 @@ class FabMenu extends React.PureComponent<PropsT, StateT> {
       );
     });
     return (
-      <div style={{ display: 'inline-block', position: 'relative' }}>
-        <MenuControl open={isOpened} onClick={this.handleClick} duration={duration!} />
-        {display}
+      <div style={style}>
+        <div style={{ display: 'inline-block', position: 'relative' }}>
+          <MenuControl 
+            open={isOpened} 
+            onClick={this.handleClick} 
+            duration={duration} 
+            backgroundColor={backgroundColor} 
+          />
+          {display}
+        </div>
       </div>
     );
   }
@@ -53,4 +62,4 @@ class FabMenu extends React.PureComponent<PropsT, StateT> {
   }
 }
 
-export default FabMenu;
+export default FabDropDownMenu;

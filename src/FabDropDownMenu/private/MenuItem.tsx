@@ -9,12 +9,18 @@ const TransitionStyles = {
 };
 
 type PropsT = {
-  shrink: boolean;
-  duration: number;
-  delay: number;
+  shrink?: boolean;
+  duration?: number;
+  delay?: number;
 };
 
 class MenuItem extends React.PureComponent<PropsT> {
+  static defaultProps: Partial<PropsT> = {
+    shrink: true,
+    duration: 300,
+    delay: 100
+  };
+
   render() {
     const { shrink, delay, duration, children } = this.props;
     const defaultStyle = {
@@ -29,7 +35,7 @@ class MenuItem extends React.PureComponent<PropsT> {
       );
     };
     return (
-      <Transition in={shrink} timeout={duration}>
+      <Transition in={shrink!} timeout={duration!}>
         {display}
       </Transition>
     );

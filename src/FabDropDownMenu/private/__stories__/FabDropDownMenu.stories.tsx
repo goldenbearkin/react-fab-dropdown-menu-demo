@@ -1,18 +1,17 @@
 import * as React from 'react';
 
 import { storiesOf } from '@storybook/react';
-import { withKnobs, number } from '@storybook/addon-knobs';
+import { withKnobs, number, text } from '@storybook/addon-knobs';
 
 import FabDropDownMenu from '../../FabDropDownMenu';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ThumbUpDown from 'material-ui/svg-icons/action/thumbs-up-down';
 import SocialPoll from 'material-ui/svg-icons/social/poll';
 
-storiesOf('FabDropDownMenu', module)
+storiesOf('presentation-fabDropDownMenu', module)
   .addDecorator(withKnobs)
-  // .add('testing', () => <h1>testing</h1>)
   .add('default', () => <FabDropDownMenu />)
-  // .add('with styles', () => <FabDropDownMenu  backgroundColor={text('backgroundColor', 'black')} />)
+  .add('with styles', () => <FabDropDownMenu backgroundColor={text('backgroundColor', 'black')} />)
   .add('with items', () => {
     const density = number('density', 80);
     const duration = number('duration', 300);
